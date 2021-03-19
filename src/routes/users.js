@@ -1,4 +1,4 @@
-//Here is where we declare the modules and shit we will need
+//Here is where we declare the modules
 const express = require('express')
 
 //import the controllers and middleware
