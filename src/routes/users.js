@@ -11,6 +11,12 @@ const router = express.Router()
 //get all users
 router.get('/', catchErrors(usersController.index))
 
+//get top 10 users
+router.get('/topten', catchErrors(usersController.indexten))
+
+//search (hardcoded for now)
+router.get('/search', catchErrors(usersController.search))
+
 //make a new boy
 router.post('/', catchErrors(usersController.store))
 

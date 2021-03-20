@@ -18,6 +18,21 @@ exports.index = async (req, res) => {
   })
 }
 
+//show top 10 users
+exports.indexten = async (req, res) => {
+  
+  //query the DB of all users
+  await User.find().limit(10).exec()
+  .then(users => {
+    log.success('Retrieved all {} users', users.length)
+    res.json({ users: users})
+  })
+  .catch(err => {
+    log.error(err, 'Could not retrieve users: {}', err.message)
+    res.json({ error: err, message: "Could not retrieve users"}).status(500)
+  })
+}
+
 //Store a new user
 exports.store = async (req, res) => {
   
@@ -82,4 +97,34 @@ exports.update = async (req, res) => {
       log.error(err, "Could not update user: {}", req.params.id)
       res.status(500).json({err: err})
     })
+}
+
+exports.search = async (rq, res) => {
+
+  await User.find({ email: { $regex: 'mad' } })
+  .exec()
+    .then(users => {
+      log.success('Search returned users: {}', users.length)
+      res.status(200).json({users: users})
+    })
+    .catch(err => {
+      log.error(err, "Search failed: {}", err.message)
+      res.json({ error: err, message: "Could not retrieve users"}).status(500)
+    })
+
+}
+
+exports.searchStream = async (rq, res) => {
+
+  await User.find({ email: { $regex: 'mad' } })
+  .exec()
+    .then(users => {
+      log.success('Search returned users: {}', users.length)
+      res.status(200).json({users: users})
+    })
+    .catch(err => {
+      log.error(err, "Search failed: {}", err.message)
+      res.json({ error: err, message: "Could not retrieve users"}).status(500)
+    })
+
 }
