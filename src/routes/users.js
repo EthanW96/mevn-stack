@@ -12,10 +12,19 @@ const router = express.Router()
 router.get('/', catchErrors(usersController.index))
 
 //get top 10 users
-router.get('/topten', catchErrors(usersController.indexten))
+router.get('/indexten', catchErrors(usersController.indexten))
+
+//get 10 users paginated
+router.get('/indexten/:pagenum', catchErrors(usersController.indextenpaginated))
 
 //search (hardcoded for now)
 router.get('/search', catchErrors(usersController.search))
+
+router.get('/searchstream', catchErrors(usersController.searchStream))
+
+router.get('/searchreturnid', catchErrors(usersController.searchreturnid))
+
+router.get('/searchtopten', catchErrors(usersController.searchtopten))
 
 //make a new boy
 router.post('/', catchErrors(usersController.store))

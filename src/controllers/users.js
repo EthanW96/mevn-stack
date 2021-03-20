@@ -33,6 +33,21 @@ exports.indexten = async (req, res) => {
   })
 }
 
+//show 10 users pagination option (takes in "page" int)
+exports.indextenpaginated = async (req, res) => {
+  const pagenum = Number(req.params.pagenum);
+  //query the DB of all users
+  await User.find().skip(pagenum).limit(10).exec()
+  .then(users => {
+    log.success('Retrieved next {} users', users.length)
+    res.json({ users: users})
+  })
+  .catch(err => {
+    log.error(err, 'Could not retrieve users: {}', err.message)
+    res.json({ error: err, message: "Could not retrieve users"}).status(500)
+  })
+}
+
 //Store a new user
 exports.store = async (req, res) => {
   
@@ -102,6 +117,38 @@ exports.update = async (req, res) => {
 exports.search = async (rq, res) => {
 
   await User.find({ email: { $regex: 'mad' } })
+  .exec()
+    .then(users => {
+      log.success('Search returned users: {}', users.length)
+      res.status(200).json({users: users})
+    })
+    .catch(err => {
+      log.error(err, "Search failed: {}", err.message)
+      res.json({ error: err, message: "Could not retrieve users"}).status(500)
+    })
+
+}
+
+exports.searchtopten = async (rq, res) => {
+
+  await User.find({ email: { $regex: 'madden' } })
+  .limit(500)
+  .exec()
+    .then(users => {
+      log.success('Search returned users: {}', users.length)
+      res.status(200).json({users: users})
+    })
+    .catch(err => {
+      log.error(err, "Search failed: {}", err.message)
+      res.json({ error: err, message: "Could not retrieve users"}).status(500)
+    })
+
+}
+
+exports.searchreturnid = async (rq, res) => {
+
+  await User.find({ email: { $regex: 'mad' } })
+  .select('_id')
   .exec()
     .then(users => {
       log.success('Search returned users: {}', users.length)

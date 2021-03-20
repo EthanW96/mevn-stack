@@ -97,7 +97,19 @@ export default {
     //load all users from DB, we call this often to make sure the data is up to date
     load() {
       http
-        .get("users/search")
+        .get("users/indexten")
+        .then(response => {
+          this.users = response.data.users;
+        })
+        .catch(e => {
+          this.errors.push(e);
+        });
+    },
+
+    async fetchtenusers() {
+
+      http
+      .get("users/topten/1")
         .then(response => {
           this.users = response.data.users;
         })
