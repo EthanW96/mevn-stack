@@ -5,7 +5,7 @@
 
 const express = require('express')
 
-const userRoutes = require('./users') //use the user route shit
+const userRoutes = require('./users') //use the user route
 
 const router = express.Router() //make a new router
 

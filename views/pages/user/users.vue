@@ -57,11 +57,11 @@
 </template>
 
 <script>
-import { http } from "../config/http.js"
-import userItem from "../components/user.vue"
-import userAddDialog from "../components/userAddDialog.vue"
-import userEditDialog from "../components/userEditDialog.vue"
-import userDeleteDialog from "../components/userDeleteDialog.vue"
+import { http } from "../../config/http.js"
+import userItem from "../../components/user.vue"
+import userAddDialog from "../../components/userAddDialog.vue"
+import userEditDialog from "../../components/userEditDialog.vue"
+import userDeleteDialog from "../../components/userDeleteDialog.vue"
 
 export default {
   //Variables
@@ -69,7 +69,7 @@ export default {
     errors: [],
     users: [],
     userToDelete: {},
-    alertSettings: {}, //this is to abstract our our alerts to make them easier and stop repeating code
+    alertSettings: {}, //this is to abstract our alerts to make them easier and stop repeating code
     userToEdit: {},
     newUser: {},
     addDialog: false,

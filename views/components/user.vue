@@ -23,6 +23,10 @@
         </v-btn>
         </v-card>
 
+        <v-btn class="blue dark-4" :to="{name:'userProfile', params: {id: user._id}}">
+        Profile
+        </v-btn>
+
         </v-flex>
       </v-layout>
     </v-container>

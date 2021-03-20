@@ -96,7 +96,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: "MEVN Stack Client",
+      title: "Hebron CHMS",
       alertOpen: false,
       alertString: '',
       alertSuccess: false,
